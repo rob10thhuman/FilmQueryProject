@@ -12,6 +12,10 @@ public class Film {
 	private double rentalRate; 
 	private double replacementCost;
 	
+	public Film() {
+		
+	}
+	
 	public Film(String title, String description, String rating, String specialFeatures, int releaseYear,
 			int languageId, int rentalDuration, int length, double rentalRate, double replacementCost) {
 		super();
@@ -27,12 +31,17 @@ public class Film {
 		this.replacementCost = replacementCost;
 	}
 	
+//	@Override
+//	public String toString() {
+//		return "Film [title=" + title + ", description=" + description + ", rating=" + rating + ", specialFeatures="
+//				+ specialFeatures + ", releaseYear=" + releaseYear + ", languageId=" + languageId + ", rentalDuration="
+//				+ rentalDuration + ", length=" + length + ", rentalRate=" + rentalRate + ", replacementCost="
+//				+ replacementCost + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Film [title=" + title + ", description=" + description + ", rating=" + rating + ", specialFeatures="
-				+ specialFeatures + ", releaseYear=" + releaseYear + ", languageId=" + languageId + ", rentalDuration="
-				+ rentalDuration + ", length=" + length + ", rentalRate=" + rentalRate + ", replacementCost="
-				+ replacementCost + "]";
+		return "The film title is " + title + ", released in the year " + releaseYear + " with a rating of " + rating + "." + " The description is: " + description + ".";
 	}
 
 	public String getTitle() {

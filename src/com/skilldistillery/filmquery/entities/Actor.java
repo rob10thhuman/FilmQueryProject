@@ -12,6 +12,10 @@ public class Actor {
 		this.lastName = lastName;
 	}
 	
+	public Actor() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public String toString() {
 		return "Actor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
