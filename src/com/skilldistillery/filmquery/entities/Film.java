@@ -5,6 +5,7 @@ public class Film {
 	private String description;
 	private String rating;
 	private String specialFeatures;
+	private String language;
 	private int releaseYear;
 	private int languageId; 
 	private int rentalDuration;
@@ -16,7 +17,7 @@ public class Film {
 		
 	}
 	
-	public Film(String title, String description, String rating, String specialFeatures, int releaseYear,
+	public Film(String title, String description, String rating, String specialFeatures, String language, int releaseYear,
 			int languageId, int rentalDuration, int length, double rentalRate, double replacementCost) {
 		super();
 		this.title = title;
@@ -25,6 +26,7 @@ public class Film {
 		this.specialFeatures = specialFeatures;
 		this.releaseYear = releaseYear;
 		this.languageId = languageId;
+		this.language =language;;
 		this.rentalDuration = rentalDuration;
 		this.length = length;
 		this.rentalRate = rentalRate;
@@ -41,7 +43,9 @@ public class Film {
 	
 	@Override
 	public String toString() {
-		return "The film title is " + title + ", released in the year " + releaseYear + " with a rating of " + rating + "." + " The description is: " + description + ".";
+		return "The film title is " + title + ", released in the year " + releaseYear + " with a rating of " + rating + "." + 
+				"\n The description is: " + description + ".\n"
+				+ "The language is " + language + ".";
 	}
 
 	public String getTitle() {
@@ -105,6 +109,15 @@ public class Film {
 		this.replacementCost = replacementCost;
 	}
 	
+	
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

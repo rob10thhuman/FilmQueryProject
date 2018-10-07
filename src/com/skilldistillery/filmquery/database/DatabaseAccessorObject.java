@@ -25,7 +25,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Connection conn = DriverManager.getConnection(URL, user, pass);
 
 		Film film = null;
-		String sql = "select id, title, release_year, rating, description from film where id = ?";
+		String sql = "select film.id, title, release_year, rating, description, language.name from film join language on film.language_id = language.id where film.id= ?";
 
 		PreparedStatement stmt = null;
 		try {
@@ -41,6 +41,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			film.setReleaseYear(filmResult.getInt(3));
 			film.setRating(filmResult.getString(4));
 			film.setDescription(filmResult.getString(5));
+			film.setLanguage(filmResult.getString(6));
 		}
 
 		filmResult.close();
@@ -119,7 +120,11 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 
 		Film film = null;
 		
-		String sql = "select id, title, release_year, rating, description from film where title like ?";
+		String sql = "select film.id, title, release_year, rating, description, language.name from film join language on film.language_id = language.id where (title like ?) or (description like ?)";
+		
+//		 select film.id, title, release_year, rating, description, language.name from film join language on film.language_id = language.id where (title like '%to%') or (description like '%tun%');
+		
+		//	+ "select id, title, release_year, rating, description from film where title like ?";
 
 		PreparedStatement stmt = null;
 		try {
@@ -128,6 +133,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			e.printStackTrace();
 		}
 		stmt.setString(1, "%" + filmKeyword + "%");
+		stmt.setString(2, "%" + filmKeyword + "%");
 		ResultSet filmResult = stmt.executeQuery();
 		if (filmResult.next()) {
 			film = new Film();
@@ -135,7 +141,10 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			film.setReleaseYear(filmResult.getInt(3));
 			film.setRating(filmResult.getString(4));
 			film.setDescription(filmResult.getString(5));
+			film.setLanguage(filmResult.getString(6));
 		}
+		
+		//likely need to change this to an array list 
 
 		filmResult.close();
 		stmt.close();

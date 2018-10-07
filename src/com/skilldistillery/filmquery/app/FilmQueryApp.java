@@ -80,7 +80,6 @@ public class FilmQueryApp {
 		System.out.print("Please enter the film keyword >>");
 		String filmKeyword = kb.next();
 		Film film = db.getFilmByKeyword(filmKeyword);
-//		System.out.println(film);
 		
 		if (film !=null) {
 			System.out.println(film);			
