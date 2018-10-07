@@ -33,9 +33,12 @@ public class FilmQueryApp {
 
 	private void launch() throws SQLException {
 		Scanner input = new Scanner(System.in);
+		boolean keepGoing = true;
+		while (keepGoing) {
+			
 		startUserInterface();
 		int choice = input.nextInt();
-		switch (choice) {
+			switch (choice) {
 		case 1:
 			System.out.println("Look up by id!");
 			lookupById();
@@ -46,8 +49,9 @@ public class FilmQueryApp {
 			break;
 		default:
 			System.out.println("Goodbye!");
-			System.exit(0);
-			;
+			keepGoing = false;
+//			System.exit(0);
+			}
 		}
 		input.close();
 	}
@@ -66,15 +70,15 @@ public class FilmQueryApp {
 		System.out.print("Please enter the film ID >>");
 		int filmId = kb.nextInt();
 		Film film = db.getFilmById(filmId);
-		
-		if (film !=null) {
-			System.out.println(film);			
+
+		if (film != null) {
+			System.out.println(film);
 		} else {
 			System.out.println("Film not found!");
 		}
 
 	}
-	
+
 	private void lookupByKeyword() throws SQLException {
 		Scanner kb = new Scanner(System.in);
 		System.out.print("Please enter the film keyword >>");
@@ -85,10 +89,9 @@ public class FilmQueryApp {
 		for (Actor actor2 : actorByFilmId) {
 			System.out.println(actor2);
 		}
-		
-	
-		if (film !=null) {
-			System.out.println(film);			
+
+		if (film != null) {
+			System.out.println(film);
 		} else {
 			System.out.println("Keyword not found!");
 		}

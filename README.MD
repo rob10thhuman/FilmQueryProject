@@ -29,7 +29,9 @@
    needed it to do for this user story. GREAT practice in program flow, setters/
    getters, etc. Known issues still listed below, have to modify the videos to return an array list. This may break the way I've set up actors. I maybe should have fixed that first.
 
+   2345 // SATURDAY - Menu looped
+
 
 Known issues:
 - Need to modify the keyword user story to return an array list as it's currently returning only one result (the first).
-- I want to put this menu in a loop
+- I want to put this menu in a loop (DONE)
