@@ -6,6 +6,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private String language;
+	private int filmId; 
 	private int releaseYear;
 	private int languageId; 
 	private int rentalDuration;
@@ -17,9 +18,10 @@ public class Film {
 		
 	}
 	
-	public Film(String title, String description, String rating, String specialFeatures, String language, int releaseYear,
+	public Film(int filmId, String title, String description, String rating, String specialFeatures, String language, int releaseYear,
 			int languageId, int rentalDuration, int length, double rentalRate, double replacementCost) {
 		super();
+		this.filmId = filmId;
 		this.title = title;
 		this.description = description;
 		this.rating = rating;
@@ -43,9 +45,18 @@ public class Film {
 	
 	@Override
 	public String toString() {
-		return "The film title is " + title + ", released in the year " + releaseYear + " with a rating of " + rating + "." + 
+		return "ID: " + filmId +  ". The film title is " + title + ", released in the year " + releaseYear + " with a rating of " + rating + "." + 
 				"\n The description is: " + description + ".\n"
 				+ "The language is " + language + ".";
+	}
+
+	
+	public int getFilmId() {
+		return filmId;
+	}
+
+	public void setFilmId(int filmId) {
+		this.filmId = filmId;
 	}
 
 	public String getTitle() {

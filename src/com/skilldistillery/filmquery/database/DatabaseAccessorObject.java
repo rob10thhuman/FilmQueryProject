@@ -37,6 +37,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		ResultSet filmResult = stmt.executeQuery();
 		if (filmResult.next()) {
 			film = new Film();
+			film.setFilmId(filmResult.getInt(1));
 			film.setTitle(filmResult.getString(2));
 			film.setReleaseYear(filmResult.getInt(3));
 			film.setRating(filmResult.getString(4));
@@ -88,7 +89,8 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		List<Actor> actorList = new ArrayList<>();
 
 //		Actor actor = null;
-		String sql = "select actor.id, actor.first_name, actor.last_name from actor join film where film.id=?";
+//		String sql = "select actor.id, actor.first_name, actor.last_name from actor join film where film.id=?";
+		String sql = "select actor.first_name, actor.last_name from actor join film_actor on actor.id = film_actor.actor_id where film_actor.film_id = ?";
 
 		PreparedStatement stmt = null;
 		try {
@@ -100,9 +102,9 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		ResultSet actorResult = stmt.executeQuery();
 		while (actorResult.next()) {
 			Actor actor = new Actor();
-			actor.setId(actorResult.getInt(1));
-			actor.setFirstName(actorResult.getString(2));
-			actor.setLastName(actorResult.getString(3));
+			actor.setFirstName(actorResult.getString(1));
+//			actor.setFirstName(actorResult.getString(2));
+			actor.setLastName(actorResult.getString(2));
 			actorList.add(actor);
 		}
 
@@ -137,6 +139,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		ResultSet filmResult = stmt.executeQuery();
 		if (filmResult.next()) {
 			film = new Film();
+			film.setFilmId(filmResult.getInt(1));
 			film.setTitle(filmResult.getString(2));
 			film.setReleaseYear(filmResult.getInt(3));
 			film.setRating(filmResult.getString(4));

@@ -22,6 +22,12 @@
    for language) and how to use the joins and queries
 5. User story 5: add actors to display
    I am working through this one right now. This is complicated (so far).
+   Update: SUCCESS!!!  2258 hours, Saturday night
+   Initially, I was attempting to modify the SQL statement to retrieve this,
+   with limited success. Zach pointed out we have a method for this w/actor
+   already. So, that set me on the path of modifying this method to do what I
+   needed it to do for this user story. GREAT practice in program flow, setters/
+   getters, etc. Known issues still listed below, have to modify the videos to return an array list. This may break the way I've set up actors. I maybe should have fixed that first.
 
 
 Known issues:
