@@ -84,14 +84,15 @@ public class FilmQueryApp {
 		System.out.print("Please enter the film keyword >>");
 		String filmKeyword = kb.next();
 		Film film = db.getFilmByKeyword(filmKeyword);
-		System.out.println(film.getFilmId());
-		List<Actor> actorByFilmId = db.getActorsByFilmId(film.getFilmId());
-		for (Actor actor2 : actorByFilmId) {
-			System.out.println(actor2);
-		}
+//		System.out.println(film.getFilmId());
 
 		if (film != null) {
 			System.out.println(film);
+			List<Actor> actorByFilmId = db.getActorsByFilmId(film.getFilmId());
+			System.out.println("Film actors are:");
+			for (Actor actor2 : actorByFilmId) {
+				System.out.println(actor2);
+			}
 		} else {
 			System.out.println("Keyword not found!");
 		}

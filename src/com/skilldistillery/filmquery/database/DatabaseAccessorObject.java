@@ -119,7 +119,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		String user = "student";
 		String pass = "student";
 		Connection conn = DriverManager.getConnection(URL, user, pass);
-
 		Film film = null;
 		
 		String sql = "select film.id, title, release_year, rating, description, language.name from film join language on film.language_id = language.id where (title like ?) or (description like ?)";
