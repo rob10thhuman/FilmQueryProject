@@ -85,11 +85,11 @@ public class FilmQueryApp {
 		System.out.print("Please enter the film keyword >>");
 		String filmKeyword = kb.next();
 		List<Film> film = db.getFilmByKeyword(filmKeyword);
-//		System.out.println(film.getFilmId());
 
-		if (film != null) {
+		if (film.isEmpty()) {
+			System.out.println("Keyword not found!");
 
-//			System.out.println(film);
+		} else {
 			List<Film> filmList = db.getFilmByKeyword(filmKeyword);
 			for (Film filmList2 : filmList) {
 				System.out.println(filmList2);
@@ -102,8 +102,6 @@ public class FilmQueryApp {
 				System.out.println("");
 			}
 
-		} else {
-			System.out.println("Keyword not found!");
 		}
 
 	}

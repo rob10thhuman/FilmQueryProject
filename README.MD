@@ -31,7 +31,9 @@
 
    2345 // SATURDAY - Menu looped
 
-   0821 Monday -- arrayList completed! I "think" I have the correct structure in place! Running out of time to t/s but working at it and uploading the most current product I have! :) 
+   0821 Monday -- arrayList completed! I "think" I have the correct structure in place! Running out of time to t/s but working at it and uploading the most current product I have! :)
+
+   0825 Monday -- one last change, changed the film not null to return a keyword to checking to see if it's empty since it's an arraylist now! 
 
 
 Known issues:
