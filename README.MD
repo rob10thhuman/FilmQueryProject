@@ -31,6 +31,8 @@
 
    2345 // SATURDAY - Menu looped
 
+   0821 Monday -- arrayList completed! I "think" I have the correct structure in place! Running out of time to t/s but working at it and uploading the most current product I have! :) 
+
 
 Known issues:
 - Need to modify the keyword user story to return an array list as it's currently returning only one result (the first).

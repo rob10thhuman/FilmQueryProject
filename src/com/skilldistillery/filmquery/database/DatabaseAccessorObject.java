@@ -88,8 +88,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		Connection conn = DriverManager.getConnection(URL, user, pass);
 		List<Actor> actorList = new ArrayList<>();
 
-//		Actor actor = null;
-//		String sql = "select actor.id, actor.first_name, actor.last_name from actor join film where film.id=?";
 		String sql = "select actor.first_name, actor.last_name from actor join film_actor on actor.id = film_actor.actor_id where film_actor.film_id = ?";
 
 		PreparedStatement stmt = null;
@@ -103,7 +101,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		while (actorResult.next()) {
 			Actor actor = new Actor();
 			actor.setFirstName(actorResult.getString(1));
-//			actor.setFirstName(actorResult.getString(2));
 			actor.setLastName(actorResult.getString(2));
 			actorList.add(actor);
 		}
@@ -115,18 +112,17 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Film getFilmByKeyword(String filmKeyword) throws SQLException {
+	public List <Film> getFilmByKeyword(String filmKeyword) throws SQLException {
 		String user = "student";
 		String pass = "student";
 		Connection conn = DriverManager.getConnection(URL, user, pass);
+		
+		List<Film> filmList = new ArrayList<>();
+
 		Film film = null;
 		
 		String sql = "select film.id, title, release_year, rating, description, language.name from film join language on film.language_id = language.id where (title like ?) or (description like ?)";
 		
-//		 select film.id, title, release_year, rating, description, language.name from film join language on film.language_id = language.id where (title like '%to%') or (description like '%tun%');
-		
-		//	+ "select id, title, release_year, rating, description from film where title like ?";
-
 		PreparedStatement stmt = null;
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -136,15 +132,26 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.setString(1, "%" + filmKeyword + "%");
 		stmt.setString(2, "%" + filmKeyword + "%");
 		ResultSet filmResult = stmt.executeQuery();
-		if (filmResult.next()) {
-			film = new Film();
-			film.setFilmId(filmResult.getInt(1));
-			film.setTitle(filmResult.getString(2));
-			film.setReleaseYear(filmResult.getInt(3));
-			film.setRating(filmResult.getString(4));
-			film.setDescription(filmResult.getString(5));
-			film.setLanguage(filmResult.getString(6));
+		
+		while (filmResult.next()) {
+			Film film1 = new Film();
+			film1.setFilmId(filmResult.getInt(1));
+			film1.setTitle(filmResult.getString(2));
+			film1.setReleaseYear(filmResult.getInt(3));
+			film1.setRating(filmResult.getString(4));
+			film1.setDescription(filmResult.getString(5));
+			film1.setLanguage(filmResult.getString(6));
+			filmList.add(film1);
 		}
+//		if (filmResult.next()) {
+//			film = new Film();
+//			film.setFilmId(filmResult.getInt(1));
+//			film.setTitle(filmResult.getString(2));
+//			film.setReleaseYear(filmResult.getInt(3));
+//			film.setRating(filmResult.getString(4));
+//			film.setDescription(filmResult.getString(5));
+//			film.setLanguage(filmResult.getString(6));
+//		}
 		
 		//likely need to change this to an array list 
 
@@ -152,7 +159,7 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 		stmt.close();
 		conn.close();
 
-		return film;
+		return filmList;
 	}
 
 }

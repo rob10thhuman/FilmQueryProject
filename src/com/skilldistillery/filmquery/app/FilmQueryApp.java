@@ -1,6 +1,7 @@
 package com.skilldistillery.filmquery.app;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,21 +36,21 @@ public class FilmQueryApp {
 		Scanner input = new Scanner(System.in);
 		boolean keepGoing = true;
 		while (keepGoing) {
-			
-		startUserInterface();
-		int choice = input.nextInt();
+
+			startUserInterface();
+			int choice = input.nextInt();
 			switch (choice) {
-		case 1:
-			System.out.println("Look up by id!");
-			lookupById();
-			break;
-		case 2:
-			System.out.println("Lookup by keyword!");
-			lookupByKeyword();
-			break;
-		default:
-			System.out.println("Goodbye!");
-			keepGoing = false;
+			case 1:
+				System.out.println("Look up by id!");
+				lookupById();
+				break;
+			case 2:
+				System.out.println("Lookup by keyword!");
+				lookupByKeyword();
+				break;
+			default:
+				System.out.println("Goodbye!");
+				keepGoing = false;
 //			System.exit(0);
 			}
 		}
@@ -83,16 +84,24 @@ public class FilmQueryApp {
 		Scanner kb = new Scanner(System.in);
 		System.out.print("Please enter the film keyword >>");
 		String filmKeyword = kb.next();
-		Film film = db.getFilmByKeyword(filmKeyword);
+		List<Film> film = db.getFilmByKeyword(filmKeyword);
 //		System.out.println(film.getFilmId());
 
 		if (film != null) {
-			System.out.println(film);
-			List<Actor> actorByFilmId = db.getActorsByFilmId(film.getFilmId());
-			System.out.println("Film actors are:");
-			for (Actor actor2 : actorByFilmId) {
-				System.out.println(actor2);
+
+//			System.out.println(film);
+			List<Film> filmList = db.getFilmByKeyword(filmKeyword);
+			for (Film filmList2 : filmList) {
+				System.out.println(filmList2);
+				System.out.println("");
+				List<Actor> actorByFilmId = db.getActorsByFilmId(Film.getFilmId());
+				System.out.println("Film actors are:");
+				for (Actor actor2 : actorByFilmId) {
+					System.out.println(actor2);
+				}
+				System.out.println("");
 			}
+
 		} else {
 			System.out.println("Keyword not found!");
 		}

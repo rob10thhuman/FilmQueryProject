@@ -6,7 +6,7 @@ public class Film {
 	private String rating;
 	private String specialFeatures;
 	private String language;
-	private int filmId; 
+	private static int filmId; 
 	private int releaseYear;
 	private int languageId; 
 	private int rentalDuration;
@@ -51,7 +51,7 @@ public class Film {
 	}
 
 	
-	public int getFilmId() {
+	public static int getFilmId() {
 		return filmId;
 	}
 
